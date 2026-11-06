@@ -7,8 +7,8 @@ import requests
 from dotenv import load_dotenv
 
 
-# Общий .env лежит в корне репозитория, на уровень выше папки дня.
-load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+# Общий .env лежит в корне репозитория, на два уровня выше папки дня.
+load_dotenv(Path(__file__).resolve().parents[2] / ".env")
 api_key = os.getenv("POLZA_API_KEY", "").strip()
 if not api_key:
     raise SystemExit("Заполни POLZA_API_KEY в .env в корне репозитория.")
