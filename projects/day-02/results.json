@@ -1,0 +1,957 @@
+{
+  "started_at": "2026-11-07T20:48:36.927272+00:00",
+  "model": "deepseek/deepseek-v4-flash",
+  "provider": "streamlake/fp8",
+  "question": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность.",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "planet": {
+        "type": "string",
+        "description": "Название планеты"
+      },
+      "position": {
+        "type": "integer",
+        "description": "Порядковый номер от Солнца"
+      },
+      "satellites": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Названия естественных спутников"
+      },
+      "surface": {
+        "type": "string",
+        "description": "Краткое описание поверхности"
+      }
+    },
+    "required": [
+      "planet",
+      "position",
+      "satellites",
+      "surface"
+    ],
+    "additionalProperties": false
+  },
+  "repeats": 3,
+  "state": "completed",
+  "records": [
+    {
+      "variant": "schema",
+      "repeat": 1,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "planet",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "planet": {
+                  "type": "string",
+                  "description": "Название планеты"
+                },
+                "position": {
+                  "type": "integer",
+                  "description": "Порядковый номер от Солнца"
+                },
+                "satellites": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Названия естественных спутников"
+                },
+                "surface": {
+                  "type": "string",
+                  "description": "Краткое описание поверхности"
+                }
+              },
+              "required": [
+                "planet",
+                "position",
+                "satellites",
+                "surface"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449146233753601\",\"object\":\"chat.completion\",\"created\":1794084524,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{ \\\"planet\\\": \\\"Марс\\\", \\\"position\\\": 4, \\\"satellites\\\": [\\\"Фобос\\\", \\\"Деймос\\\"], \\\"surface\\\": \\\"Поверхность Марса в основном каменистая и пустынная, покрытая кратерами, вулканами (включая самый большой в Солнечной системе — Олимп), долинами и каньонами (например, долины Маринер). Имеет красноватый оттенок из-за высокого содержания оксида железа (ржавчины) в грунте. На полюсах присутствуют ледяные шапки из водяного льда и замерзшего углекислого газа.\\\" }\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":42,\"completion_tokens\":155,\"total_tokens\":197,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00176371,\"cost\":0.00176371,\"plugins\":null}}",
+      "answer": "{ \"planet\": \"Марс\", \"position\": 4, \"satellites\": [\"Фобос\", \"Деймос\"], \"surface\": \"Поверхность Марса в основном каменистая и пустынная, покрытая кратерами, вулканами (включая самый большой в Солнечной системе — Олимп), долинами и каньонами (например, долины Маринер). Имеет красноватый оттенок из-за высокого содержания оксида железа (ржавчины) в грунте. На полюсах присутствуют ледяные шапки из водяного льда и замерзшего углекислого газа.\" }",
+      "provider": null,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 155,
+        "total_tokens": 197,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.00176371,
+        "cost": 0.00176371,
+        "plugins": null
+      },
+      "checks": {
+        "json_ok": true,
+        "schema_ok": true,
+        "errors": []
+      }
+    },
+    {
+      "variant": "baseline",
+      "repeat": 1,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449178434867201\",\"object\":\"chat.completion\",\"created\":1794084534,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Вот краткая информация о планете Марс:\\n\\n1.  **Порядковый номер от Солнца:** Марс — **четвёртая** планета Солнечной системы (следует за Меркурием, Венерой и Землёй).\\n2.  **Естественные спутники:** У Марса есть два небольших спутника неправильной формы — **Фобос** (греч. «страх») и **Деймос** (греч. «ужас»). Они, вероятно, являются захваченными астероидами.\\n3.  **Поверхность:** Поверхность Марса в основном пустынная, каменистая и покрыта кратерами. Из-за высокого содержания оксида железа (ржавчины) она имеет характерный **красновато-ржавый цвет**. На планете находится самый большой вулкан в Солнечной системе — **Олимп** (высотой около 21,9 км) и огромная система каньонов — **Долины Маринера**. Также на поверхности есть полярные шапки из водяного льда и замёрзшей углекислоты.\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":42,\"completion_tokens\":268,\"total_tokens\":310,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00292534,\"cost\":0.00292534,\"plugins\":null}}",
+      "answer": "Вот краткая информация о планете Марс:\n\n1.  **Порядковый номер от Солнца:** Марс — **четвёртая** планета Солнечной системы (следует за Меркурием, Венерой и Землёй).\n2.  **Естественные спутники:** У Марса есть два небольших спутника неправильной формы — **Фобос** (греч. «страх») и **Деймос** (греч. «ужас»). Они, вероятно, являются захваченными астероидами.\n3.  **Поверхность:** Поверхность Марса в основном пустынная, каменистая и покрыта кратерами. Из-за высокого содержания оксида железа (ржавчины) она имеет характерный **красновато-ржавый цвет**. На планете находится самый большой вулкан в Солнечной системе — **Олимп** (высотой около 21,9 км) и огромная система каньонов — **Долины Маринера**. Также на поверхности есть полярные шапки из водяного льда и замёрзшей углекислоты.",
+      "provider": null,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 268,
+        "total_tokens": 310,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.00292534,
+        "cost": 0.00292534,
+        "plugins": null
+      },
+      "checks": null
+    },
+    {
+      "variant": "formatted",
+      "repeat": 1,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность.\nВерни только JSON-объект без Markdown и пояснений вне JSON. Поля: planet — название планеты (строка), position — порядковый номер от Солнца (целое число), satellites — названия спутников (массив строк), surface — описание поверхности (строка). Все четыре поля обязательны, других полей нет."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449217644924929\",\"object\":\"chat.completion\",\"created\":1794084539,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"planet\\\": \\\"Марс\\\",\\n  \\\"position\\\": 4,\\n  \\\"satellites\\\": [\\\"Фобос\\\", \\\"Деймос\\\"],\\n  \\\"surface\\\": \\\"Поверхность Марса покрыта кратерами, вулканами, долинами и пустынями, преобладает красноватый цвет из-за оксида железа, есть полярные шапки из водяного льда и углекислого газа.\\\"\\n}\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":120,\"completion_tokens\":102,\"total_tokens\":222,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00162341,\"cost\":0.00162341,\"plugins\":null}}",
+      "answer": "{\n  \"planet\": \"Марс\",\n  \"position\": 4,\n  \"satellites\": [\"Фобос\", \"Деймос\"],\n  \"surface\": \"Поверхность Марса покрыта кратерами, вулканами, долинами и пустынями, преобладает красноватый цвет из-за оксида железа, есть полярные шапки из водяного льда и углекислого газа.\"\n}",
+      "provider": null,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 120,
+        "completion_tokens": 102,
+        "total_tokens": 222,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.00162341,
+        "cost": 0.00162341,
+        "plugins": null
+      },
+      "checks": {
+        "json_ok": true,
+        "schema_ok": true,
+        "errors": []
+      }
+    },
+    {
+      "variant": "limited",
+      "repeat": 1,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        },
+        "max_tokens": 50
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449240638492673\",\"object\":\"chat.completion\",\"created\":1794084544,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Вот краткая информация о планете Марс:\\n\\n1.  **Порядковый номер от Солнца:** Марс — **четвёртая** планета от Солнца.\\n2.  **Естественные сп\"},\"finish_reason\":\"length\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":42,\"completion_tokens\":50,\"total_tokens\":92,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00071868,\"cost\":0.00071868,\"plugins\":null}}",
+      "answer": "Вот краткая информация о планете Марс:\n\n1.  **Порядковый номер от Солнца:** Марс — **четвёртая** планета от Солнца.\n2.  **Естественные сп",
+      "provider": null,
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 50,
+        "total_tokens": 92,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.00071868,
+        "cost": 0.00071868,
+        "plugins": null
+      },
+      "checks": null
+    },
+    {
+      "variant": "stop",
+      "repeat": 1,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность.\nСначала укажи название планеты и её порядковый номер от Солнца. Затем на отдельной строке напиши маркер <<<END>>>. После маркера назови естественные спутники и кратко опиши поверхность."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        },
+        "stop": [
+          "<<<END>>>"
+        ]
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449260471521281\",\"object\":\"chat.completion\",\"created\":1794084547,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Марс — четвёртая планета от Солнца.  \\n\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":97,\"completion_tokens\":20,\"total_tokens\":117,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00068644,\"cost\":0.00068644,\"plugins\":null}}",
+      "answer": "Марс — четвёртая планета от Солнца.  \n",
+      "provider": null,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 97,
+        "completion_tokens": 20,
+        "total_tokens": 117,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.00068644,
+        "cost": 0.00068644,
+        "plugins": null
+      },
+      "checks": null
+    },
+    {
+      "variant": "schema",
+      "repeat": 2,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "planet",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "planet": {
+                  "type": "string",
+                  "description": "Название планеты"
+                },
+                "position": {
+                  "type": "integer",
+                  "description": "Порядковый номер от Солнца"
+                },
+                "satellites": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Названия естественных спутников"
+                },
+                "surface": {
+                  "type": "string",
+                  "description": "Краткое описание поверхности"
+                }
+              },
+              "required": [
+                "planet",
+                "position",
+                "satellites",
+                "surface"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449272271671297\",\"object\":\"chat.completion\",\"created\":1794084554,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{ \\\"planet\\\": \\\"Марс\\\", \\\"position\\\": 4, \\\"satellites\\\": [\\\"Фобос\\\", \\\"Деймос\\\"], \\\"surface\\\": \\\"Поверхность Марса каменистая и пустынная, покрыта кратерами, вулканами (в том числе самой высокой горой в Солнечной системе — Олимпом) и глубокими каньонами (например, Долина Маринера). Цвет поверхности обусловлен высоким содержанием оксида железа, из-за чего планета выглядит красной. На Марсе есть ледяные шапки на полюсах, состоящие из водяного льда и замерзшего углекислого газа. Атмосфера разрежена, поэтому на поверхности часто возникают пылевые бури.\\\" }\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":42,\"completion_tokens\":177,\"total_tokens\":219,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00198417,\"cost\":0.00198417,\"plugins\":null}}",
+      "answer": "{ \"planet\": \"Марс\", \"position\": 4, \"satellites\": [\"Фобос\", \"Деймос\"], \"surface\": \"Поверхность Марса каменистая и пустынная, покрыта кратерами, вулканами (в том числе самой высокой горой в Солнечной системе — Олимпом) и глубокими каньонами (например, Долина Маринера). Цвет поверхности обусловлен высоким содержанием оксида железа, из-за чего планета выглядит красной. На Марсе есть ледяные шапки на полюсах, состоящие из водяного льда и замерзшего углекислого газа. Атмосфера разрежена, поэтому на поверхности часто возникают пылевые бури.\" }",
+      "provider": null,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 177,
+        "total_tokens": 219,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.00198417,
+        "cost": 0.00198417,
+        "plugins": null
+      },
+      "checks": {
+        "json_ok": true,
+        "schema_ok": true,
+        "errors": []
+      }
+    },
+    {
+      "variant": "baseline",
+      "repeat": 2,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449305244143617\",\"object\":\"chat.completion\",\"created\":1794084566,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Марс — четвёртая по счёту планета от Солнца (между Землёй и Юпитером).\\n\\n**Естественные спутники:** у Марса есть два небольших спутника неправильной формы — **Фобос** (что в переводе с греческого означает «Страх») и **Деймос** («Ужас»). Они были открыты в 1877 году и, вероятно, являются захваченными астероидами.\\n\\n**Поверхность:** Марс — планета пустынного типа с каменистой поверхностью, покрытой кратерами (особенно в южном полушарии), вулканами (здесь находится самый большой вулкан в Солнечной системе — гора Олимп, высотой около 21,9 км) и глубокими каньонами (например, система каньонов Долины Маринера, протяжённостью около 4000 км). Грунт богат оксидами железа, что придаёт планете характерный ржаво-красный цвет. На поверхности имеются следы древних водных потоков (высохшие русла рек), а под поверхностью находится водяной лёд.\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":42,\"completion_tokens\":276,\"total_tokens\":318,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00297626,\"cost\":0.00297626,\"plugins\":null}}",
+      "answer": "Марс — четвёртая по счёту планета от Солнца (между Землёй и Юпитером).\n\n**Естественные спутники:** у Марса есть два небольших спутника неправильной формы — **Фобос** (что в переводе с греческого означает «Страх») и **Деймос** («Ужас»). Они были открыты в 1877 году и, вероятно, являются захваченными астероидами.\n\n**Поверхность:** Марс — планета пустынного типа с каменистой поверхностью, покрытой кратерами (особенно в южном полушарии), вулканами (здесь находится самый большой вулкан в Солнечной системе — гора Олимп, высотой около 21,9 км) и глубокими каньонами (например, система каньонов Долины Маринера, протяжённостью около 4000 км). Грунт богат оксидами железа, что придаёт планете характерный ржаво-красный цвет. На поверхности имеются следы древних водных потоков (высохшие русла рек), а под поверхностью находится водяной лёд.",
+      "provider": null,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 276,
+        "total_tokens": 318,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.00297626,
+        "cost": 0.00297626,
+        "plugins": null
+      },
+      "checks": null
+    },
+    {
+      "variant": "formatted",
+      "repeat": 2,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность.\nВерни только JSON-объект без Markdown и пояснений вне JSON. Поля: planet — название планеты (строка), position — порядковый номер от Солнца (целое число), satellites — названия спутников (массив строк), surface — описание поверхности (строка). Все четыре поля обязательны, других полей нет."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449353861500929\",\"object\":\"chat.completion\",\"created\":1794084572,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"planet\\\": \\\"Марс\\\",\\n  \\\"position\\\": 4,\\n  \\\"satellites\\\": [\\\"Фобос\\\", \\\"Деймос\\\"],\\n  \\\"surface\\\": \\\"Красноватая пустынная поверхность, покрытая кратерами, каньонами (в том числе долина Маринер) и вулканами, включая самый большой в Солнечной системе — Олимп.\\\"\\n}\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":120,\"completion_tokens\":91,\"total_tokens\":211,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00152846,\"cost\":0.00152846,\"plugins\":null}}",
+      "answer": "{\n  \"planet\": \"Марс\",\n  \"position\": 4,\n  \"satellites\": [\"Фобос\", \"Деймос\"],\n  \"surface\": \"Красноватая пустынная поверхность, покрытая кратерами, каньонами (в том числе долина Маринер) и вулканами, включая самый большой в Солнечной системе — Олимп.\"\n}",
+      "provider": null,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 120,
+        "completion_tokens": 91,
+        "total_tokens": 211,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.00152846,
+        "cost": 0.00152846,
+        "plugins": null
+      },
+      "checks": {
+        "json_ok": true,
+        "schema_ok": true,
+        "errors": []
+      }
+    },
+    {
+      "variant": "limited",
+      "repeat": 2,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        },
+        "max_tokens": 50
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449377316311041\",\"object\":\"chat.completion\",\"created\":1794084575,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Вот краткая информация о Марсе:\\n\\n*   **Порядковый номер от Солнца:** Четвертая планета.\\n*   **Естественные спутники:** Фобос и Деймос (в перевод\"},\"finish_reason\":\"length\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":42,\"completion_tokens\":50,\"total_tokens\":92,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.0007115,\"cost\":0.0007115,\"plugins\":null}}",
+      "answer": "Вот краткая информация о Марсе:\n\n*   **Порядковый номер от Солнца:** Четвертая планета.\n*   **Естественные спутники:** Фобос и Деймос (в перевод",
+      "provider": null,
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 50,
+        "total_tokens": 92,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.0007115,
+        "cost": 0.0007115,
+        "plugins": null
+      },
+      "checks": null
+    },
+    {
+      "variant": "stop",
+      "repeat": 2,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность.\nСначала укажи название планеты и её порядковый номер от Солнца. Затем на отдельной строке напиши маркер <<<END>>>. После маркера назови естественные спутники и кратко опиши поверхность."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        },
+        "stop": [
+          "<<<END>>>"
+        ]
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449392519745537\",\"object\":\"chat.completion\",\"created\":1794084579,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Марс — четвёртая планета от Солнца.\\n\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":97,\"completion_tokens\":20,\"total_tokens\":117,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00068644,\"cost\":0.00068644,\"plugins\":null}}",
+      "answer": "Марс — четвёртая планета от Солнца.\n",
+      "provider": null,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 97,
+        "completion_tokens": 20,
+        "total_tokens": 117,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.00068644,
+        "cost": 0.00068644,
+        "plugins": null
+      },
+      "checks": null
+    },
+    {
+      "variant": "schema",
+      "repeat": 3,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        },
+        "response_format": {
+          "type": "json_schema",
+          "json_schema": {
+            "name": "planet",
+            "strict": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "planet": {
+                  "type": "string",
+                  "description": "Название планеты"
+                },
+                "position": {
+                  "type": "integer",
+                  "description": "Порядковый номер от Солнца"
+                },
+                "satellites": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "Названия естественных спутников"
+                },
+                "surface": {
+                  "type": "string",
+                  "description": "Краткое описание поверхности"
+                }
+              },
+              "required": [
+                "planet",
+                "position",
+                "satellites",
+                "surface"
+              ],
+              "additionalProperties": false
+            }
+          }
+        }
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449408561254401\",\"object\":\"chat.completion\",\"created\":1794084588,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{ \\\"planet\\\": \\\"Марс\\\", \\\"position\\\": 4, \\\"satellites\\\": [\\\"Фобос\\\", \\\"Деймос\\\"], \\\"surface\\\": \\\"Поверхность Марса в основном представляет собой каменистую пустыню красно-оранжевого цвета из-за оксида железа (ржавчины) в грунте. На ней находятся огромные вулканы (самый большой — гора Олимп), глубокие каньоны (долина Маринер), многочисленные кратеры, а также полярные шапки из водяного льда и замерзшей углекислоты.\\\" }\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":42,\"completion_tokens\":144,\"total_tokens\":186,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00165348,\"cost\":0.00165348,\"plugins\":null}}",
+      "answer": "{ \"planet\": \"Марс\", \"position\": 4, \"satellites\": [\"Фобос\", \"Деймос\"], \"surface\": \"Поверхность Марса в основном представляет собой каменистую пустыню красно-оранжевого цвета из-за оксида железа (ржавчины) в грунте. На ней находятся огромные вулканы (самый большой — гора Олимп), глубокие каньоны (долина Маринер), многочисленные кратеры, а также полярные шапки из водяного льда и замерзшей углекислоты.\" }",
+      "provider": null,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 144,
+        "total_tokens": 186,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.00165348,
+        "cost": 0.00165348,
+        "plugins": null
+      },
+      "checks": {
+        "json_ok": true,
+        "schema_ok": true,
+        "errors": []
+      }
+    },
+    {
+      "variant": "baseline",
+      "repeat": 3,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449445539811329\",\"object\":\"chat.completion\",\"created\":1794084602,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Вот краткая информация о планете Марс:\\n\\n1.  **Порядковый номер от Солнца:** Марс — **четвертая** планета от Солнца (после Меркурия, Венеры и Земли).\\n2.  **Естественные спутники:** У Марса есть два небольших спутника неправильной формы:\\n    *   **Фобос** (что означает «Страх»).\\n    *   **Деймос** (что означает «Ужас»).\\n    *   Оба спутника, вероятно, являются захваченными астероидами.\\n3.  **Краткое описание поверхности:**\\n    *   Поверхность Марса в основном каменистая и покрыта кратерами, напоминая пустыню. Из-за высокого содержания оксида железа (ржавчины) в грунте планета имеет характерный **красновато-ржавый цвет**.\\n    *   На Марсе находится самая высокая гора в Солнечной системе — вулкан **Олимп** (высота около 21,9 км) и самый большой каньон — **Долины Маринер** (протяженность около 4000 км).\\n    *   На планете есть полярные шапки, состоящие из водяного льда и замерзшего углекислого газа (сухого льда).\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":42,\"completion_tokens\":317,\"total_tokens\":359,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00338712,\"cost\":0.00338712,\"plugins\":null}}",
+      "answer": "Вот краткая информация о планете Марс:\n\n1.  **Порядковый номер от Солнца:** Марс — **четвертая** планета от Солнца (после Меркурия, Венеры и Земли).\n2.  **Естественные спутники:** У Марса есть два небольших спутника неправильной формы:\n    *   **Фобос** (что означает «Страх»).\n    *   **Деймос** (что означает «Ужас»).\n    *   Оба спутника, вероятно, являются захваченными астероидами.\n3.  **Краткое описание поверхности:**\n    *   Поверхность Марса в основном каменистая и покрыта кратерами, напоминая пустыню. Из-за высокого содержания оксида железа (ржавчины) в грунте планета имеет характерный **красновато-ржавый цвет**.\n    *   На Марсе находится самая высокая гора в Солнечной системе — вулкан **Олимп** (высота около 21,9 км) и самый большой каньон — **Долины Маринер** (протяженность около 4000 км).\n    *   На планете есть полярные шапки, состоящие из водяного льда и замерзшего углекислого газа (сухого льда).",
+      "provider": null,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 317,
+        "total_tokens": 359,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.00338712,
+        "cost": 0.00338712,
+        "plugins": null
+      },
+      "checks": null
+    },
+    {
+      "variant": "formatted",
+      "repeat": 3,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность.\nВерни только JSON-объект без Markdown и пояснений вне JSON. Поля: planet — название планеты (строка), position — порядковый номер от Солнца (целое число), satellites — названия спутников (массив строк), surface — описание поверхности (строка). Все четыре поля обязательны, других полей нет."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449506068992001\",\"object\":\"chat.completion\",\"created\":1794084607,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\n  \\\"planet\\\": \\\"Марс\\\",\\n  \\\"position\\\": 4,\\n  \\\"satellites\\\": [\\\"Фобос\\\", \\\"Деймос\\\"],\\n  \\\"surface\\\": \\\"Красно-оранжевая пустыня с кратерами, горами и каньонами, включая вулкан Олимп и долину Маринера.\\\"\\n}\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":120,\"completion_tokens\":81,\"total_tokens\":201,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00141297,\"cost\":0.00141297,\"plugins\":null}}",
+      "answer": "{\n  \"planet\": \"Марс\",\n  \"position\": 4,\n  \"satellites\": [\"Фобос\", \"Деймос\"],\n  \"surface\": \"Красно-оранжевая пустыня с кратерами, горами и каньонами, включая вулкан Олимп и долину Маринера.\"\n}",
+      "provider": null,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 120,
+        "completion_tokens": 81,
+        "total_tokens": 201,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.00141297,
+        "cost": 0.00141297,
+        "plugins": null
+      },
+      "checks": {
+        "json_ok": true,
+        "schema_ok": true,
+        "errors": []
+      }
+    },
+    {
+      "variant": "limited",
+      "repeat": 3,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        },
+        "max_tokens": 50
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449527068430337\",\"object\":\"chat.completion\",\"created\":1794084613,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Вот краткая информация о планете Марс:\\n\\n1.  **Порядковый номер от Солнца:** Марс — **четвертая** планета от Солнца (после Меркурия, Вен\"},\"finish_reason\":\"length\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":42,\"completion_tokens\":50,\"total_tokens\":92,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.0007115,\"cost\":0.0007115,\"plugins\":null}}",
+      "answer": "Вот краткая информация о планете Марс:\n\n1.  **Порядковый номер от Солнца:** Марс — **четвертая** планета от Солнца (после Меркурия, Вен",
+      "provider": null,
+      "finish_reason": "length",
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 50,
+        "total_tokens": 92,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.0007115,
+        "cost": 0.0007115,
+        "plugins": null
+      },
+      "checks": null
+    },
+    {
+      "variant": "stop",
+      "repeat": 3,
+      "state": "received",
+      "request": {
+        "model": "deepseek/deepseek-v4-flash",
+        "messages": [
+          {
+            "role": "user",
+            "content": "Расскажи о планете Марс: укажи её порядковый номер от Солнца, назови естественные спутники и кратко опиши поверхность.\nСначала укажи название планеты и её порядковый номер от Солнца. Затем на отдельной строке напиши маркер <<<END>>>. После маркера назови естественные спутники и кратко опиши поверхность."
+          }
+        ],
+        "reasoning": {
+          "enabled": false
+        },
+        "provider": {
+          "only": [
+            "streamlake/fp8"
+          ],
+          "allow_fallbacks": false
+        },
+        "stop": [
+          "<<<END>>>"
+        ]
+      },
+      "http_status": 200,
+      "raw_response": "{\"id\":\"gen_2230449549226807297\",\"object\":\"chat.completion\",\"created\":1794084616,\"model\":\"deepseek/deepseek-v4-flash\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Марс — четвёртая планета от Солнца.\\n\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":97,\"completion_tokens\":20,\"total_tokens\":117,\"completion_tokens_details\":{\"reasoning_tokens\":0,\"audio_tokens\":0,\"image_tokens\":0,\"accepted_prediction_tokens\":null,\"rejected_prediction_tokens\":null},\"prompt_tokens_details\":{\"cached_tokens\":0,\"cache_write_tokens\":0,\"audio_tokens\":0,\"video_tokens\":0},\"server_tool_use\":null,\"cost_rub\":0.00069338,\"cost\":0.00069338,\"plugins\":null}}",
+      "answer": "Марс — четвёртая планета от Солнца.\n",
+      "provider": null,
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 97,
+        "completion_tokens": 20,
+        "total_tokens": 117,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "accepted_prediction_tokens": null,
+          "rejected_prediction_tokens": null
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "server_tool_use": null,
+        "cost_rub": 0.00069338,
+        "cost": 0.00069338,
+        "plugins": null
+      },
+      "checks": null
+    }
+  ],
+  "protocol": "stop-middle-v1"
+}
