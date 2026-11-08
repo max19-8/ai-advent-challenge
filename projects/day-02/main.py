@@ -87,9 +87,53 @@ def check_answer(answer):
 
 
 def save_results(run):
-    path = DIRECTORY / "results.json"
-    temporary = path.with_suffix(".json.tmp")
-    temporary.write_text(json.dumps(run, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    lines = [
+        "День 2. Формат ответа", f"Начало UTC: {run['started_at']}",
+        f"Модель: {run['model']}", f"Запрошенный провайдер: {run['provider']}",
+        f"Состояние прогона: {run['state']}", f"Повторов каждого варианта: {run['repeats']}",
+        "", "Основной вопрос:", run["question"], "",
+    ]
+    for variant in ("baseline", "formatted", "limited", "stop", "schema"):
+        lines += ["=" * 60, VARIANTS[variant], "=" * 60]
+        records = [r for r in run["records"] if r["variant"] == variant]
+        if not records:
+            lines += ["Запросы ещё не выполнены.", ""]
+        for record in records:
+            payload = record["request"]
+            reasoning = "отключены" if payload.get("reasoning") == {"enabled": False} else "настройка не задана"
+            lines += [f"\nПовтор {record['repeat']}. Состояние: {record['state']}",
+                      "Запрос:", payload["messages"][0]["content"], "",
+                      f"Рассуждения: {reasoning}",
+                      f"max_tokens: {payload.get('max_tokens', 'не задан')}",
+                      "stop: " + ", ".join(payload.get("stop", [])) if payload.get("stop") else "stop: не задан"]
+            if "response_format" in payload:
+                schema = payload["response_format"]["json_schema"]
+                lines += [f"Формат: JSON Schema, strict={schema['strict']}"]
+                for name, field in schema["schema"]["properties"].items():
+                    kind = field["type"]
+                    if kind == "array":
+                        kind += " из " + field["items"]["type"]
+                    lines.append(f"  {name}: {kind}; {field.get('description', '')}")
+                lines += ["Обязательные поля: " + ", ".join(schema["schema"]["required"]),
+                          f"Дополнительные поля разрешены: {schema['schema']['additionalProperties']}"]
+            lines.append(f"HTTP: {record.get('http_status', 'ответ не получен')}")
+            if record["state"] == "received":
+                usage = record.get("usage") or {}
+                lines += [f"Завершение: {record['finish_reason']}",
+                          f"Токены: вход {usage.get('prompt_tokens', 'н/д')}, выход {usage.get('completion_tokens', 'н/д')}",
+                          "", "Ответ модели:", record["answer"], ""]
+                if record.get("checks") is not None:
+                    checks = record["checks"]
+                    lines += [f"JSON разбирается: {checks['json_ok']}; соответствует схеме: {checks['schema_ok']}"]
+                    lines += checks["errors"]
+            else:
+                lines.append(record.get("error", "Ответ ещё не получен."))
+                if record.get("raw_response"):
+                    lines += ["Ответ API с ошибкой:", record["raw_response"]]
+            lines.append("")
+    path = DIRECTORY / "results.txt"
+    temporary = path.with_suffix(".txt.tmp")
+    temporary.write_text("\n".join(lines) + "\n", encoding="utf-8")
     temporary.replace(path)
 
 
@@ -107,7 +151,7 @@ def main():
     }
     total = len(VARIANTS) * REPEATS
     print(f"{MODEL}, провайдер {PROVIDER}: {total} запросов, без повторных попыток.")
-    print("Результаты каждого запуска заменяют projects/day-02/results.json.", flush=True)
+    print("Результаты каждого запуска заменяют projects/day-02/results.txt.", flush=True)
     record = None
     try:
         save_results(run)
@@ -147,7 +191,7 @@ def main():
                         checks=check_answer(answer) if variant in ("formatted", "schema") else None,
                     )
                 except (requests.RequestException, ValueError, KeyError, IndexError, TypeError, AttributeError):
-                    record.update(state="api_error", error="Ошибка сети, HTTP или структуры ответа API; см. raw_response, если он получен.")
+                    record.update(state="api_error", error="Ошибка сети, HTTP или структуры ответа API; подробности в results.txt, если ответ получен.")
                     run["state"] = "api_error"
                     print("Прогон остановлен: " + record["error"])
                     return 1
@@ -184,7 +228,7 @@ def main():
             markers = str(sum(STOP in r["answer"] for r in records)) if variant == "stop" else "—"
             print(f"{title} | {len(records)}/{REPEATS} | {truncated} | {tokens} | {parsing} | {markers}")
         print("Состояние: " + run["state"])
-        print("Результаты: " + str(DIRECTORY / "results.json"))
+        print("Результаты: " + str(DIRECTORY / "results.txt"))
 
 
 if __name__ == "__main__":
