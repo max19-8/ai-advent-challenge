@@ -1,0 +1,312 @@
+День 10. Фактические метрики API
+Вход локально — токенизатор, вход/выход API и цена — usage сервиса.
+н/д означает отсутствие данных. Итоги незавершённых этапов частичные.
+
+=== window ===
+Модель: qwen/qwen-2.5-72b-instruct
+Начало UTC: 2026-11-15T18:16:11.641601+00:00
+Этапы: {'dialogue': 'complete', 'probe': 'complete', 'branches': 'complete'}
+№ | Раздел | Назначение | Обращение | Вход лок. | Вход API | Выход API | Кеш API | ₽ | HTTP | Завершение
+1 | comparison | dialogue | turn-01 | 161 | 161 | 18 | 0 | 0.00769147 | 200 | stop
+2 | comparison | dialogue | turn-02 | 217 | 217 | 24 | 0 | 0.01035444 | 200 | stop
+3 | comparison | dialogue | turn-03 | 280 | 280 | 30 | 0 | 0.01331488 | 200 | stop
+4 | comparison | dialogue | turn-04 | 345 | 345 | 13 | 0 | 0.01527433 | 200 | stop
+5 | comparison | dialogue | turn-05 | 334 | 334 | 18 | 0 | 0.01519493 | 200 | stop
+6 | comparison | dialogue | turn-06 | 318 | 318 | 12 | 0 | 0.01407977 | 200 | stop
+7 | comparison | dialogue | turn-07 | 307 | 307 | 23 | 0 | 0.01413171 | 200 | stop
+8 | comparison | dialogue | turn-08 | 329 | 329 | 24 | 0 | 0.0151138 | 200 | stop
+9 | comparison | dialogue | turn-09 | 334 | 334 | 15 | 0 | 0.01490133 | 200 | stop
+10 | comparison | dialogue | turn-10 | 346 | 346 | 18 | 0 | 0.01555291 | 200 | stop
+11 | comparison | dialogue | turn-11 | 332 | 332 | 20 | 0 | 0.01505242 | 200 | stop
+12 | comparison | dialogue | turn-12 | 319 | 319 | 7 | 0 | 0.01388619 | 200 | stop
+13 | comparison | probe | responsible | 314 | 314 | 24 | 0 | 0.01462261 | 200 | stop
+14 | comparison | probe | deadline | 310 | 310 | 8 | 0 | 0.01368783 | 200 | stop
+15 | comparison | probe | budget | 312 | 312 | 12 | 0 | 0.01382481 | 200 | stop
+16 | comparison | probe | restriction | 305 | 305 | 14 | 0 | 0.01362178 | 200 | stop
+17 | comparison | probe | decision | 304 | 304 | 22 | 0 | 0.01395701 | 200 | stop
+18 | comparison | probe | participants | 302 | 302 | 13 | 0 | 0.01344708 | 200 | stop
+19 | comparison | probe | start | 306 | 306 | 12 | 0 | 0.01356984 | 200 | stop
+20 | comparison | probe | duration | 300 | 300 | 13 | 0 | 0.01336209 | 200 | stop
+21 | comparison | probe | platform | 304 | 304 | 14 | 0 | 0.01357928 | 200 | stop
+22 | comparison | probe | materials | 303 | 303 | 17 | 0 | 0.01367844 | 200 | stop
+23 | branches | dialogue | A-turn-1 | 323 | 323 | 18 | 0 | 0.01472277 | 200 | stop
+24 | branches | dialogue | A-turn-2 | 327 | 327 | 19 | 0 | 0.01479273 | 200 | stop
+25 | branches | dialogue | B-turn-1 | 323 | 323 | 18 | 0 | 0.01457554 | 200 | stop
+26 | branches | dialogue | B-turn-2 | 327 | 327 | 19 | 0 | 0.01479273 | 200 | stop
+27 | branches | probe | switch-1-A-deadline | 319 | 319 | 20 | 0 | 0.01449999 | 200 | stop
+28 | branches | probe | switch-1-A-budget | 321 | 321 | 16 | 0 | 0.01439612 | 200 | stop
+29 | branches | probe | switch-2-B-deadline | 319 | 319 | 20 | 0 | 0.01449999 | 200 | stop
+30 | branches | probe | switch-2-B-budget | 321 | 321 | 16 | 0 | 0.01439612 | 200 | stop
+31 | branches | probe | switch-3-A-deadline | 319 | 319 | 20 | 0 | 0.01449999 | 200 | stop
+32 | branches | probe | switch-3-A-budget | 321 | 321 | 16 | 0 | 0.01439612 | 200 | stop
+33 | branches | probe | checkpoint-deadline | 310 | 310 | 8 | 0 | 0.01355096 | 200 | stop
+34 | branches | probe | checkpoint-budget | 312 | 312 | 8 | 0 | 0.01363594 | 200 | stop
+
+Раздел | Назначение | Вызовы | Вход API | Выход API | Всего токенов | ₽
+comparison | dialogue | 12 | 3622 | 222 | 3844 | 0.16454818
+comparison | facts | 0 | 0 | 0 | 0 | 0
+comparison | summary | 0 | 0 | 0 | 0 | 0
+comparison | probe | 10 | 3060 | 149 | 3209 | 0.13735077
+comparison | ВСЕГО | 22 | 6682 | 371 | 7053 | 0.30189895
+branches | dialogue | 4 | 1300 | 74 | 1374 | 0.05888377
+branches | facts | 0 | 0 | 0 | 0 | 0
+branches | summary | 0 | 0 | 0 | 0 | 0
+branches | probe | 8 | 2542 | 124 | 2666 | 0.11387523
+branches | ВСЕГО | 12 | 3842 | 198 | 4040 | 0.17275900
+Поддержка памяти в основном сценарии: 0 вызовов.
+Строк классов памяти, включая базовый Window: 12. Общий Agent, Branches, клиент, промпты и отчёт сюда не включены.
+Локальный контекст перед проверкой: {'messages_in_dialogue': 24, 'recent_messages': 6, 'local_tokens': 285}
+Обращение 1: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 2: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 3: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 4: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 5: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 6: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 7: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 8: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 9: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 10: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 11: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 12: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 13: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 14: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 15: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 16: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 17: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 18: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 19: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 20: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 21: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 22: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 23: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 24: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 25: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 26: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 27: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 28: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 29: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 30: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 31: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 32: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 33: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 34: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+=== facts ===
+Модель: qwen/qwen-2.5-72b-instruct
+Начало UTC: 2026-11-15T18:16:29.674831+00:00
+Этапы: {'dialogue': 'complete', 'probe': 'complete', 'branches': 'complete'}
+№ | Раздел | Назначение | Обращение | Вход лок. | Вход API | Выход API | Кеш API | ₽ | HTTP | Завершение
+1 | comparison | facts | turn-01 | 250 | 250 | 31 | 0 | 0.01208726 | 200 | stop
+2 | comparison | dialogue | turn-01 | 195 | 191 | 18 | 0 | 0.00896629 | 200 | stop
+3 | comparison | facts | turn-02 | 270 | 270 | 53 | 0 | 0.0139759 | 200 | stop
+4 | comparison | dialogue | turn-02 | 271 | 267 | 20 | 0 | 0.01229029 | 200 | stop
+5 | comparison | facts | turn-03 | 291 | 291 | 74 | 0 | 0.01585981 | 200 | stop
+6 | comparison | dialogue | turn-03 | 350 | 345 | 30 | 0 | 0.016077 | 200 | stop
+7 | comparison | facts | turn-04 | 306 | 306 | 98 | 0 | 0.01763041 | 200 | stop
+8 | comparison | dialogue | turn-04 | 435 | 431 | 21 | 0 | 0.01930657 | 200 | stop
+9 | comparison | facts | turn-05 | 324 | 324 | 136 | 0 | 0.02018951 | 200 | stop
+10 | comparison | dialogue | turn-05 | 463 | 459 | 18 | 0 | 0.02035476 | 200 | stop
+11 | comparison | facts | turn-06 | 351 | 351 | 149 | 0 | 0.02195066 | 200 | stop
+12 | comparison | dialogue | turn-06 | 462 | 458 | 14 | 0 | 0.0201234 | 200 | stop
+13 | comparison | facts | turn-07 | 380 | 380 | 185 | 0 | 0.02488276 | 200 | stop
+14 | comparison | dialogue | turn-07 | 484 | 480 | 28 | 0 | 0.0217193 | 200 | stop
+15 | comparison | facts | turn-08 | 412 | 412 | 180 | 0 | 0.0260065 | 200 | stop
+16 | comparison | dialogue | turn-08 | 498 | 494 | 22 | 0 | 0.02203093 | 200 | stop
+17 | comparison | facts | turn-09 | 391 | 391 | 197 | 0 | 0.02591679 | 200 | stop
+18 | comparison | dialogue | turn-09 | 516 | 512 | 20 | 0 | 0.02270139 | 200 | stop
+19 | comparison | facts | turn-10 | 412 | 412 | 220 | 0 | 0.02789514 | 200 | stop
+20 | comparison | dialogue | turn-10 | 551 | 547 | 23 | 0 | 0.02433034 | 200 | stop
+21 | comparison | facts | turn-11 | 432 | 432 | 239 | 0 | 0.02994154 | 200 | stop
+22 | comparison | dialogue | turn-11 | 552 | 548 | 25 | 0 | 0.02446726 | 200 | stop
+23 | comparison | facts | turn-12 | 448 | 448 | 239 | 0 | 0.03032203 | 200 | stop
+24 | comparison | dialogue | turn-12 | 546 | 542 | 8 | 0 | 0.02340963 | 200 | stop
+25 | comparison | probe | responsible | 537 | 533 | 18 | 0 | 0.02349934 | 200 | stop
+26 | comparison | probe | deadline | 533 | 529 | 20 | 0 | 0.02342379 | 200 | stop
+27 | comparison | probe | budget | 535 | 531 | 21 | 0 | 0.023556 | 200 | stop
+28 | comparison | probe | restriction | 528 | 524 | 13 | 0 | 0.02288081 | 200 | stop
+29 | comparison | probe | decision | 527 | 523 | 12 | 0 | 0.0227911 | 200 | stop
+30 | comparison | probe | participants | 525 | 521 | 12 | 0 | 0.02270611 | 200 | stop
+31 | comparison | probe | start | 529 | 525 | 21 | 0 | 0.0235364 | 200 | stop
+32 | comparison | probe | duration | 523 | 519 | 15 | 0 | 0.02276277 | 200 | stop
+33 | comparison | probe | platform | 527 | 523 | 14 | 0 | 0.02288553 | 200 | stop
+34 | comparison | probe | materials | 526 | 522 | 17 | 0 | 0.02298469 | 200 | stop
+35 | branches | facts | A-turn-1 | 453 | 453 | 239 | 0 | 0.0305345 | 200 | stop
+36 | branches | dialogue | A-turn-1 | 546 | 542 | 29 | 0 | 0.02440116 | 200 | stop
+37 | branches | facts | A-turn-2 | 451 | 451 | 239 | 0 | 0.03044952 | 200 | stop
+38 | branches | dialogue | A-turn-2 | 556 | 552 | 26 | 0 | 0.02468446 | 200 | stop
+39 | branches | facts | B-turn-1 | 453 | 453 | 239 | 0 | 0.0305345 | 200 | stop
+40 | branches | dialogue | B-turn-1 | 546 | 542 | 29 | 0 | 0.02440116 | 200 | stop
+41 | branches | facts | B-turn-2 | 451 | 451 | 239 | 0 | 0.03044952 | 200 | stop
+42 | branches | dialogue | B-turn-2 | 556 | 552 | 26 | 0 | 0.02468446 | 200 | stop
+43 | branches | probe | switch-1-A-deadline | 550 | 546 | 20 | 0 | 0.0241462 | 200 | stop
+44 | branches | probe | switch-1-A-budget | 552 | 548 | 21 | 0 | 0.0242784 | 200 | stop
+45 | branches | probe | switch-2-B-deadline | 550 | 546 | 20 | 0 | 0.0241462 | 200 | stop
+46 | branches | probe | switch-2-B-budget | 552 | 548 | 21 | 0 | 0.0242784 | 200 | stop
+47 | branches | probe | switch-3-A-deadline | 550 | 546 | 20 | 0 | 0.0241462 | 200 | stop
+48 | branches | probe | switch-3-A-budget | 552 | 548 | 21 | 0 | 0.0242784 | 200 | stop
+49 | branches | probe | checkpoint-deadline | 533 | 529 | 20 | 0 | 0.0236604 | 200 | stop
+50 | branches | probe | checkpoint-budget | 535 | 531 | 15 | 0 | 0.0232727 | 200 | stop
+
+Раздел | Назначение | Вызовы | Вход API | Выход API | Всего токенов | ₽
+comparison | dialogue | 12 | 5274 | 247 | 5521 | 0.23577716
+comparison | facts | 12 | 4267 | 1801 | 6068 | 0.26665831
+comparison | summary | 0 | 0 | 0 | 0 | 0
+comparison | probe | 10 | 5250 | 163 | 5413 | 0.23102654
+comparison | ВСЕГО | 34 | 14791 | 2211 | 17002 | 0.73346201
+branches | dialogue | 4 | 2188 | 110 | 2298 | 0.09817124
+branches | facts | 4 | 1808 | 956 | 2764 | 0.12196804
+branches | summary | 0 | 0 | 0 | 0 | 0
+branches | probe | 8 | 4342 | 158 | 4500 | 0.1922069
+branches | ВСЕГО | 16 | 8338 | 1224 | 9562 | 0.41234618
+Поддержка памяти в основном сценарии: 12 вызовов.
+Строк классов памяти, включая базовый Window: 34. Общий Agent, Branches, клиент, промпты и отчёт сюда не включены.
+Локальный контекст перед проверкой: {'messages_in_dialogue': 24, 'recent_messages': 6, 'local_tokens': 508, 'fact_keys': 13}
+Обращение 1: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 2: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 3: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 4: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 5: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 6: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 7: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 8: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 9: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 10: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 11: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 12: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 13: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 14: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 15: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 16: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 17: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 18: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 19: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 20: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 21: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 22: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 23: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 24: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 25: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 26: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 27: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 28: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 29: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 30: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 31: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 32: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 33: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 34: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 35: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 36: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 37: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 38: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 39: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 40: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 41: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 42: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 43: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 44: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 45: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 46: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 47: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 48: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 49: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 50: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+=== summary ===
+Модель: qwen/qwen-2.5-72b-instruct
+Начало UTC: 2026-11-15T18:18:31.247492+00:00
+Этапы: {'dialogue': 'complete', 'probe': 'complete', 'branches': 'complete'}
+№ | Раздел | Назначение | Обращение | Вход лок. | Вход API | Выход API | Кеш API | ₽ | HTTP | Завершение
+1 | comparison | dialogue | turn-01 | 161 | 161 | 18 | 0 | 0.00769147 | 200 | stop
+2 | comparison | dialogue | turn-02 | 217 | 217 | 24 | 0 | 0.01035444 | 200 | stop
+3 | comparison | dialogue | turn-03 | 280 | 280 | 30 | 0 | 0.01331488 | 200 | stop
+4 | comparison | dialogue | turn-04 | 345 | 345 | 13 | 0 | 0.01527433 | 200 | stop
+5 | comparison | dialogue | turn-05 | 390 | 390 | 18 | 0 | 0.01742266 | 200 | stop
+6 | comparison | summary | summary-01 | 270 | 270 | 35 | 0 | 0.01312601 | 200 | stop
+7 | comparison | dialogue | turn-06 | 371 | 366 | 12 | 0 | 0.01628232 | 200 | stop
+8 | comparison | dialogue | turn-07 | 429 | 424 | 24 | 0 | 0.01915076 | 200 | stop
+9 | comparison | dialogue | turn-08 | 500 | 495 | 25 | 0 | 0.02221507 | 200 | stop
+10 | comparison | dialogue | turn-09 | 556 | 551 | 15 | 0 | 0.02412259 | 200 | stop
+11 | comparison | dialogue | turn-10 | 608 | 603 | 20 | 0 | 0.02656837 | 200 | stop
+12 | comparison | summary | summary-02 | 444 | 444 | 132 | 0 | 0.02509996 | 200 | stop
+13 | comparison | dialogue | turn-11 | 485 | 480 | 20 | 0 | 0.02134157 | 200 | stop
+14 | comparison | dialogue | turn-12 | 543 | 538 | 8 | 0 | 0.02323965 | 200 | stop
+15 | comparison | summary | summary-03 | 397 | 397 | 142 | 0 | 0.02357488 | 200 | stop
+16 | comparison | probe | responsible | 477 | 472 | 16 | 0 | 0.02102299 | 200 | stop
+17 | comparison | probe | deadline | 473 | 468 | 20 | 0 | 0.02083164 | 200 | stop
+18 | comparison | probe | budget | 475 | 470 | 25 | 0 | 0.02115271 | 200 | stop
+19 | comparison | probe | restriction | 468 | 463 | 13 | 0 | 0.02028866 | 200 | stop
+20 | comparison | probe | decision | 467 | 462 | 22 | 0 | 0.02067111 | 200 | stop
+21 | comparison | probe | participants | 465 | 460 | 12 | 0 | 0.02011396 | 200 | stop
+22 | comparison | probe | start | 469 | 464 | 21 | 0 | 0.02070888 | 200 | stop
+23 | comparison | probe | duration | 463 | 458 | 15 | 0 | 0.02017062 | 200 | stop
+24 | comparison | probe | platform | 467 | 462 | 20 | 0 | 0.02057668 | 200 | stop
+25 | comparison | probe | materials | 466 | 461 | 14 | 0 | 0.02025089 | 200 | stop
+26 | branches | dialogue | A-turn-1 | 486 | 481 | 27 | 0 | 0.02193392 | 200 | stop
+27 | branches | dialogue | A-turn-2 | 554 | 549 | 19 | 0 | 0.02422646 | 200 | stop
+28 | branches | dialogue | B-turn-1 | 486 | 481 | 26 | 0 | 0.02166736 | 200 | stop
+29 | branches | dialogue | B-turn-2 | 553 | 548 | 18 | 0 | 0.02413675 | 200 | stop
+30 | branches | probe | switch-1-A-deadline | 603 | 598 | 20 | 0 | 0.0263559 | 200 | stop
+31 | branches | probe | switch-1-A-budget | 605 | 600 | 25 | 0 | 0.02667697 | 200 | stop
+32 | branches | probe | switch-2-B-deadline | 601 | 596 | 20 | 0 | 0.02653627 | 200 | stop
+33 | branches | probe | switch-2-B-budget | 603 | 598 | 16 | 0 | 0.02616704 | 200 | stop
+34 | branches | probe | switch-3-A-deadline | 603 | 598 | 20 | 0 | 0.0263559 | 200 | stop
+35 | branches | probe | switch-3-A-budget | 605 | 600 | 25 | 0 | 0.02667697 | 200 | stop
+36 | branches | probe | checkpoint-deadline | 473 | 468 | 20 | 0 | 0.02083164 | 200 | stop
+37 | branches | probe | checkpoint-budget | 475 | 470 | 25 | 0 | 0.02115271 | 200 | stop
+
+Раздел | Назначение | Вызовы | Вход API | Выход API | Всего токенов | ₽
+comparison | dialogue | 12 | 4850 | 227 | 5077 | 0.21697811
+comparison | facts | 0 | 0 | 0 | 0 | 0
+comparison | summary | 3 | 1111 | 309 | 1420 | 0.06180085
+comparison | probe | 10 | 4640 | 178 | 4818 | 0.20578814
+comparison | ВСЕГО | 25 | 10601 | 714 | 11315 | 0.48456710
+branches | dialogue | 4 | 2059 | 90 | 2149 | 0.09196449
+branches | facts | 0 | 0 | 0 | 0 | 0
+branches | summary | 0 | 0 | 0 | 0 | 0
+branches | probe | 8 | 4528 | 171 | 4699 | 0.20075340
+branches | ВСЕГО | 12 | 6587 | 261 | 6848 | 0.29271789
+Поддержка памяти в основном сценарии: 3 вызовов.
+Строк классов памяти, включая базовый Window: 41. Общий Agent, Branches, клиент, промпты и отчёт сюда не включены.
+Локальный контекст перед проверкой: {'messages_in_dialogue': 24, 'recent_messages': 6, 'local_tokens': 448, 'covered_messages': 18, 'summary_updates': 3}
+Обращение 1: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 2: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 3: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 4: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 5: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 6: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 7: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 8: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 9: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 10: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 11: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 12: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 13: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 14: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 15: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 16: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 17: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 18: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 19: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 20: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 21: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 22: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 23: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 24: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 25: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 26: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 27: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 28: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 29: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 30: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 31: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 32: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 33: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 34: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 35: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 36: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 37: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+
+Весь фактический эксперимент (все стратегии и ветвление):
+Вызовы: 121
+input: 50841
+output: 4979
+cost: 2.39775113
