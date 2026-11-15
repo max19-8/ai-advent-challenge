@@ -1,0 +1,101 @@
+День 9. Сжатие истории
+Модель: qwen/qwen-2.5-72b-instruct
+Начало UTC: 2026-11-15T15:12:43.481050+00:00
+Этапы: {'dialogue': 'complete', 'compress': 'complete', 'probe': 'complete'}
+Локальный вход — оценка по официальному токенизатору; API — фактический usage.
+Стоимость берётся из cost_rub или алиаса cost один раз; н/д не равно нулю.
+
+№ | Этап | Обращение | Вход лок. | Вход API | Выход API | Кеш API | ₽ | HTTP | Завершение
+1 | dialogue | turn-01 | 165 | 165 | 18 | 0 | 0.00786144 | 200 | stop
+2 | dialogue | turn-02 | 221 | 221 | 24 | 0 | 0.01052442 | 200 | stop
+3 | dialogue | turn-03 | 284 | 284 | 30 | 0 | 0.01348485 | 200 | stop
+4 | dialogue | turn-04 | 349 | 349 | 13 | 0 | 0.01544431 | 200 | stop
+5 | dialogue | turn-05 | 394 | 394 | 18 | 0 | 0.01759263 | 200 | stop
+6 | dialogue | turn-06 | 440 | 440 | 12 | 0 | 0.01926408 | 200 | stop
+7 | dialogue | turn-07 | 498 | 498 | 24 | 0 | 0.02229533 | 200 | stop
+8 | dialogue | turn-08 | 569 | 569 | 25 | 0 | 0.02535964 | 200 | stop
+9 | dialogue | turn-09 | 625 | 625 | 15 | 0 | 0.02726717 | 200 | stop
+10 | dialogue | turn-10 | 677 | 677 | 20 | 0 | 0.02971295 | 200 | stop
+11 | dialogue | turn-11 | 734 | 734 | 20 | 0 | 0.03213512 | 200 | stop
+12 | dialogue | turn-12 | 792 | 792 | 8 | 0 | 0.0340332 | 200 | stop
+13 | summary | summary-01 | 270 | 270 | 35 | 0 | 0.01312601 | 200 | stop
+14 | summary | summary-02 | 444 | 444 | 132 | 0 | 0.02535349 | 200 | stop
+15 | summary | summary-03 | 397 | 397 | 142 | 0 | 0.02357488 | 200 | stop
+16 | probe-full | responsible | 834 | 834 | 16 | 0 | 0.03619569 | 200 | stop
+17 | probe-compressed | responsible | 481 | 476 | 16 | 0 | 0.02098273 | 200 | stop
+18 | probe-full | deadline | 830 | 830 | 20 | 0 | 0.03621457 | 200 | stop
+19 | probe-compressed | deadline | 477 | 472 | 20 | 0 | 0.02100162 | 200 | stop
+20 | probe-full | budget | 832 | 832 | 16 | 0 | 0.0361107 | 200 | stop
+21 | probe-compressed | budget | 479 | 474 | 25 | 0 | 0.02153807 | 200 | stop
+22 | probe-full | restriction | 825 | 825 | 13 | 0 | 0.03567159 | 200 | stop
+23 | probe-compressed | restriction | 472 | 467 | 13 | 0 | 0.02045864 | 200 | stop
+24 | probe-full | decision | 824 | 824 | 15 | 0 | 0.03608437 | 200 | stop
+25 | probe-compressed | decision | 471 | 466 | 17 | 0 | 0.02060501 | 200 | stop
+26 | probe-full | participants | 822 | 822 | 12 | 0 | 0.03549689 | 200 | stop
+27 | probe-compressed | participants | 469 | 464 | 12 | 0 | 0.02028394 | 200 | stop
+28 | probe-full | start | 826 | 826 | 21 | 0 | 0.03645638 | 200 | stop
+29 | probe-compressed | start | 473 | 468 | 21 | 0 | 0.02087886 | 200 | stop
+30 | probe-full | duration | 820 | 820 | 15 | 0 | 0.03591268 | 200 | stop
+31 | probe-compressed | duration | 467 | 462 | 15 | 0 | 0.0203406 | 200 | stop
+32 | probe-full | platform | 824 | 824 | 20 | 0 | 0.03595961 | 200 | stop
+33 | probe-compressed | platform | 471 | 466 | 20 | 0 | 0.02095622 | 200 | stop
+34 | probe-full | materials | 823 | 823 | 17 | 0 | 0.03577547 | 200 | stop
+35 | probe-compressed | materials | 470 | 465 | 17 | 0 | 0.02056251 | 200 | stop
+
+Сводка записанных обращений (до завершения этапов это частичные данные):
+Этап | Попытки | Вход API | Выход API | ₽
+dialogue | 12 | 5748 | 227 | 0.25497514
+summary | 3 | 1111 | 309 | 0.06205438
+probe-full | 10 | 8260 | 165 | 0.35987795
+probe-compressed | 10 | 4680 | 176 | 0.20760820
+Все фактические попытки: input=19799; output=877; cost=0.88451567
+
+Сравнение проверки фактов: full против summary + compressed.
+Общая подготовка dialogue вынесена отдельно, а стоимость всех summary включена.
+input: full=8260; summary+compressed=5791; разность full−compressed=2469
+output: full=165; summary+compressed=485; разность full−compressed=-320
+cost: full=0.35987795; summary+compressed=0.26966258; разность full−compressed=0.09021537
+Разница токенов проверки с учётом summary, без общей подготовки: 25.51% (минус означает рост расхода).
+
+Размер сохранённого контекста локально:
+full_local: 805
+compressed_local: 452
+summary_text_tokens: 142
+covered_messages: 18
+recent_messages: 6
+summary_requests: 3
+Обращение 1: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 2: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 3: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 4: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 5: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 6: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 7: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 8: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 9: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 10: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 11: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 12: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 13: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 14: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 15: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 16: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 17: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 18: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 19: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 20: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 21: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 22: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 23: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 24: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 25: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 26: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 27: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 28: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 29: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 30: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 31: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 32: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 33: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 34: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
+Обращение 35: модель=qwen/qwen-2.5-72b-instruct; провайдер=н/д
