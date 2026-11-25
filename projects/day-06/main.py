@@ -94,13 +94,19 @@ def reject_constant(value):
 
 
 class Agent:
+    system_prompt = SYSTEM_PROMPT
+    tools = TOOLS
+
     def __init__(self, api_key, max_steps=8):
         self.api_key = api_key
         self.max_steps = max_steps
 
+    def build_payload(self, messages):
+        return {"model": MODEL, "messages": list(messages), "tools": self.tools,
+                "tool_choice": "auto", "reasoning": {"enabled": False}}
+
     def request(self, messages):
-        payload = {"model": MODEL, "messages": list(messages), "tools": TOOLS,
-                   "tool_choice": "auto", "reasoning": {"enabled": False}}
+        payload = self.build_payload(messages)
         try:
             response = requests.post(
                 API_URL, headers={"Authorization": f"Bearer {self.api_key}"},
@@ -145,7 +151,7 @@ class Agent:
     def run(self, question):
         if not isinstance(question, str) or not question.strip():
             raise AgentError("Вопрос не должен быть пустым.")
-        messages = [{"role": "system", "content": SYSTEM_PROMPT},
+        messages = [{"role": "system", "content": self.system_prompt},
                     {"role": "user", "content": question.strip()}]
         for _ in range(self.max_steps):
             message, finish = self.request(messages)
