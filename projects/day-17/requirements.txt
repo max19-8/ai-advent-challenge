@@ -1,0 +1,3 @@
+-r ../day-16/requirements.txt
+httpx>=0.27,<1
+starlette>=0.27,<2
